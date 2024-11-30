@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APASBAC</title>
+  <link rel="stylesheet" href="estilos/style.css">
+  <link rel="stylesheet" href="estilos/global.css">
+  <link rel="icon" type="img/png" href="img/logo2.jpg" />
+  <style>
+    .menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #1693a5;
+    }
+
+    .menu .logo {
+      height: 50px;
+    }
+
+    .menu h1 {
+      margin-left: 10px;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+    }
+
+    .social-icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 60px);
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .action-buttons button {
+      padding: 20px 40px;
+      font-size: 24px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      background-color: #1693a5;
+      color: white;
+      transition: background-color 0.3s;
+    }
+
+    .action-buttons button:hover {
+      background-color: #0f6c78;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="menu">
+    <div>
+      <img src="img/logo2.jpg" alt="Logo" class="logo">
+      <h1>APASBAC</h1>
+    </div>
+    <div class="nav-links">
+      <a href="about.html">Sobre</a>
+      <a rel="noopener" href="https://wa.me/5544997063037" target="_blank">
+        <img src="img/whatsapp10.png" alt="whatsapp" class="social-icon">
+      </a>
+      <a rel="noopener" href="https://www.instagram.com/apasbac" target="_blank">
+        <img src="img/instagram.png" alt="Instagram" class="social-icon">
+      </a>
+      <a href="logout.php" class="logout-link">Sair</a>
+    </div>
+  </nav>
+
+
+  <div class="button-container">
+    <div class="action-buttons">
+      <button id="gato-button" onclick="window.location.href='gatos.html';">Gatos</button>
+      <button id="cachorro-button" onclick="window.location.href='caes.html';">Cachorros</button>
+    </div>
+  </div>
+
+</body>
+
+</html>

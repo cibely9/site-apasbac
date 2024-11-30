@@ -1,0 +1,122 @@
+<h1>Formulário de Adoção de Animais de Estimação</h1>
+<form action="processa_formulario.php" method="POST">
+    <div>
+        <label for="nome">Qual é seu nome?</label>
+        <textarea id="nome" name="nome" rows="3" required></textarea>
+    </div>
+
+    <div>
+        <label for="idade">Qual é sua idade?</label>
+        <textarea id="idade" name="idade" rows="3" required></textarea>
+    </div>
+
+    <div>
+        <label for="cidade">Qual o nome da cidade em que você mora?</label>
+        <textarea id="cidade" name="cidade" rows="3" required></textarea>
+    </div>
+
+    <div>
+        <label for="lifestyle">Qual é o seu estilo de vida?</label>
+        <select id="lifestyle" name="lifestyle" required>
+            <option value="">Selecione uma opção</option>
+            <option value="ativo">Muito ativo</option>
+            <option value="moderado">Moderadamente ativo</option>
+            <option value="sedentario">Sedentário</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="space">Você tem espaço em casa para um animal de estimação?</label>
+        <select id="space" name="space" required>
+            <option value="">Selecione uma opção</option>
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+            <option value="limitado">Espaço limitado</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="allergies">Você tem alergias ou restrições de saúde que possam afetar a adoção de um animal de estimação?</label>
+        <select id="allergies" name="allergies" required>
+            <option value="">Selecione uma opção</option>
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+            <option value="nao_sei">Não tenho certeza</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="costs">Você está preparado para os custos associados à adoção de um animal de estimação?</label>
+        <select id="costs" name="costs" required>
+            <option value="">Selecione uma opção</option>
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+            <option value="nao_sei">Não tenho certeza</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="experience">Você tem experiência com animais de estimação?</label>
+        <select id="experience" name="experience" required>
+            <option value="">Selecione uma opção</option>
+            <option value="muita">Muita experiência</option>
+            <option value="alguma">Alguma experiência</option>
+            <option value="nenhuma">Nenhuma experiência</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Você está procurando por um animal de estimação específico?</label>
+        <div class="radio-group">
+            <input type="radio" id="dog" name="pet_type" value="cachorro" required>
+            <label for="dog">Cachorro</label>
+
+            <input type="radio" id="cat" name="pet_type" value="gato">
+            <label for="cat">Gato</label>
+
+            <input type="radio" id="any" name="pet_type" value="qualquer">
+            <label for="any">Qualquer um</label>
+        </div>
+    </div>
+
+    <div>
+        <label>Você tem filhos ou outros animais de estimação em casa?</label>
+        <div class="checkbox-group">
+            <input type="checkbox" id="children" name="household[]" value="filhos">
+            <label for="children">Filhos</label>
+
+            <input type="checkbox" id="other_pets" name="household[]" value="outros_animais">
+            <label for="other_pets">Outros animais</label>
+
+            <input type="checkbox" id="none" name="household[]" value="nenhum">
+            <label for="none">Nenhum</label>
+        </div>
+    </div>
+
+    <div>
+        <label for="behavior">Você está preparado para lidar com comportamentos indesejados, como arranhões ou latidos excessivos?</label>
+        <select id="behavior" name="behavior" required>
+            <option value="">Selecione uma opção</option>
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+            <option value="nao_sei">Não tenho certeza</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="care_plan">Você tem um plano para cuidar do seu animal de estimação quando você estiver fora de casa?</label>
+        <textarea id="care_plan" name="care_plan" rows="3" required></textarea>
+    </div>
+
+    <div>
+        <label for="commitment">Você está preparado para fazer um compromisso de longo prazo com o seu animal de estimação?</label>
+        <select id="commitment" name="commitment" required>
+            <option value="">Selecione uma opção</option>
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+            <option value="nao_sei">Não tenho certeza</option>
+        </select>
+    </div>
+
+    <button type="submit">Enviar</button>
+</form>

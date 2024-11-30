@@ -1,0 +1,389 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+    }
+
+    h1 {
+        text-align: center;
+        color: #2c3e50;
+    }
+
+    form {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    select,
+    textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #3498db;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #2980b9;
+    }
+
+    /* Estilos modernos para os botões de rádio */
+    .radio-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .radio-group input[type="radio"] {
+        display: none;
+    }
+
+    .radio-group label {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #f1f1f1;
+        border: 2px solid #ddd;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .radio-group input[type="radio"]:checked+label {
+        background-color: #3498db;
+        color: white;
+        border-color: #3498db;
+    }
+
+    /* Estilos para os checkboxes */
+    .checkbox-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+        display: none;
+    }
+
+    .checkbox-group label {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #f1f1f1;
+        border: 2px solid #ddd;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .checkbox-group input[type="checkbox"]:checked+label {
+        background-color: #3498db;
+        color: white;
+        border-color: #3498db;
+    }
+
+    form {
+        width: fit-content !important;
+        margin: auto;
+    }
+
+ /* Estilo geral */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    color: #333;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para a navegação */
+nav.menu {
+    background-color: #333;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+nav .logo {
+    width: 40px;
+    margin-right: 1rem;
+}
+
+nav h1 {
+    font-size: 1.8rem;
+}
+
+nav .nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+nav .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+nav .nav-links a:hover {
+    color: #333;
+}
+
+nav .nav-links .social-icon {
+    width: 25px;
+    height: 25px;
+    transition: opacity 0.3s ease;
+}
+
+nav .nav-links .social-icon:hover {
+    opacity: 0.7;
+}
+
+/* Tabela de respostas */
+/* Estilo geral */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    color: #333;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para a navegação */
+nav.menu {
+    background-color: #333;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+nav .logo {
+    width: 40px;
+    margin-right: 1rem;
+}
+
+nav h1 {
+    font-size: 1.8rem;
+}
+
+nav .nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+nav .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+nav .nav-links a:hover {
+    color: #333;
+}
+
+nav .nav-links .social-icon {
+    width: 25px;
+    height: 25px;
+    transition: opacity 0.3s ease;
+}
+
+nav .nav-links .social-icon:hover {
+    opacity: 0.7;
+}
+
+/* Tabela de respostas */
+/* Estilo geral */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Para garantir que o conteúdo cubra toda a tela */
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2 {
+    color: #333;
+    font-weight: bold;
+}
+
+/* Container principal */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+/* Estilo para a navegação */
+nav.menu {
+    background-color: #333;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+nav .logo {
+    width: 40px;
+    margin-right: 1rem;
+}
+
+nav h1 {
+    font-size: 1.8rem;
+}
+
+nav .nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+nav .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+nav .nav-links a:hover {
+    color: #333;
+}
+
+nav .nav-links .social-icon {
+    width: 25px;
+    height: 25px;
+    transition: opacity 0.3s ease;
+}
+
+nav .nav-links .social-icon:hover {
+    opacity: 0.7;
+}
+
+/* Tabela de respostas */
+table.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    font-size: 1rem;
+    text-align: left;
+    max-height: 400px; /* Limita a altura da tabela */
+    overflow-y: auto; /* Permite rolar o conteúdo da tabela */
+    display: block;
+}
+
+table.result-table th, table.result-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    word-wrap: break-word;
+}
+
+table.result-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+table.result-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table.result-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+table.result-table a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+table.result-table a:hover {
+    color: #c0392b;
+}
+
+/* Estilos adicionais para as mensagens */
+p {
+    font-size: 1.1rem;
+    color: #333;
+    text-align: center;
+}
+
+/* Botão de Exclusão (link estilizado) */
+a.delete-btn {
+    padding: 0.5rem 1rem;
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+a.delete-btn:hover {
+    background-color: #dd7a6f;
+}
+
+a.delete-btn:active {
+    background-color: #e74c3c;
+}
+
+
+</style>
