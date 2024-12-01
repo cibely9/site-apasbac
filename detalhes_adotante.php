@@ -60,6 +60,7 @@ if (isset($_GET['id'])) {
         <div class="adotante-details">
             <p><strong>Nome:</strong> <?php echo $adotante['nome']; ?></p>
             <p><strong>Idade:</strong> <?php echo $adotante['idade']; ?> anos</p>
+            
             <p><strong>Cidade:</strong> <?php echo $adotante['cidade']; ?></p>
             <p><strong>Estilo de Vida:</strong> <?php echo $adotante['estilo_vida']; ?></p>
             <p><strong>Espaço para Animal:</strong> <?php echo $adotante['espaco']; ?></p>

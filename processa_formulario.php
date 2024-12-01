@@ -1,58 +1,39 @@
-<?php 
-// Configuração do banco de dados
-$servername = "localhost"; // ou seu host
-$username = "root"; // seu nome de usuário do banco
-$password = ""; // sua senha do banco
-$dbname = "nome_do_seu_banco"; // o nome do seu banco de dados
+<?php
+include_once("./services/conexao.php");
 
-include_once "services/conexao.php";
+// Verificar se o formulário foi enviado
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Receber os dados do formulário
+    $nome = $_POST['nome'];
+    $idade = $_POST['idade'];
+    $contato = $_POST['contato'];
+    $cidade = $_POST['cidade'];
+    $estilo_vida = $_POST['estilo_vida'];
+    $espaco = $_POST['espaco'];
+    $alergias = $_POST['alergias'];
+    $custos = $_POST['custos'];
+    $experiencia = $_POST['experiencia'];
+    $motivo = $_POST['motivo'];
+    $comportamento = $_POST['comportamento'];
+    $plano_cuidado = $_POST['plano_cuidado'];
+    $compromisso = "Sim"; // Ajuste conforme necessário
 
-// Criação de conexão com o banco de dados
-$conn = new mysqli($servername, $username, $password, $dbname);
+    // Inserir os dados no banco de dados
+    $sql = "INSERT INTO adotantes (nome, idade, contato, cidade, estilo_vida, espaco, alergias, custos, experiencia, motivo, comportamento, plano_cuidado, compromisso)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-// Verificando se houve erro na conexão
-if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sisssssssssss", $nome, $idade, $contato, $cidade, $estilo_vida, $espaco, $alergias, $custos, $experiencia, $motivo, $comportamento, $plano_cuidado, $compromisso);
+
+    if ($stmt->execute()) {
+        echo "Formulário enviado com sucesso!";
+        header("Location: respostas.php"); // Redirecionar para a página de respostas
+        exit;
+    } else {
+        echo "Erro ao enviar o formulário: " . $stmt->error;
+    }
+
+    $stmt->close();
+    $conn->close();
 }
-
-// Pegando os dados do formulário
-$nome = $_POST['care_plan']; // Nome
-$idade = $_POST['idade']; // Idade
-$cidade = $_POST['cidade']; // Cidade
-$estilo_vida = $_POST['lifestyle']; // Estilo de vida
-$espaco = $_POST['space']; // Espaço
-$alergias = $_POST['allergies']; // Alergias
-$custos = $_POST['costs']; // Custos
-$experiencia = $_POST['experience']; // Experiência
-$motivo = $_POST['motivo']; // Tipo de animal
-$filhos = isset($_POST['children']) ? 1 : 0; // Filhos
-$outros_animais = isset($_POST['other_pets']) ? 1 : 0; // Outros animais
-$nenhum = isset($_POST['none']) ? 1 : 0; // Nenhum
-$comportamento = $_POST['behavior']; // Comportamento
-$plano_cuidado = $_POST['care_plan']; // Plano de cuidado
-$compromisso = $_POST['commitment']; // Compromisso
-
-// Preparando a consulta SQL para inserção
-$sql = "INSERT INTO adotantes (
-    nome, idade, cidade, estilo_vida, espaco, alergias, custos, experiencia, motivo, filhos, 
-    outros_animais, nenhum, comportamento, plano_cuidado, compromisso
-) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-// Usando prepared statements para evitar SQL Injection
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("sisssssssssssss", $nome, $idade, $cidade, $estilo_vida, $espaco, $alergias, $custos, $experiencia, 
-    $motivo, $filhos, $outros_animais, $nenhum, $comportamento, $plano_cuidado, $compromisso);
-
-// Executando a consulta
-if ($stmt->execute()) {
-    // Redireciona para a página de confirmação
-    header("Location: confirmacao.php");
-    exit();
-} else {
-    echo "Erro ao enviar o formulário: " . $stmt->error;
-}
-
-// Fechando a conexão
-$stmt->close();
-$conn->close();
 ?>

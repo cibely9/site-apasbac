@@ -12,13 +12,14 @@ if ($resultado->num_rows > 0) {
     echo "<tr>
             <th>Nome</th>
             <th>Idade</th>
+            <th>Contato</th>
             <th>Cidade</th>
             <th>Estilo de Vida</th>
             <th>Espaço</th>
             <th>Alergias</th>
             <th>Custos</th>
             <th>Experiência</th>
-            <th>Tipo de Animal</th>
+            <th>Motivo</th>
             <th>Comportamento</th>
             <th>Plano de Cuidado</th>
             <th>Compromisso</th>
@@ -29,13 +30,14 @@ if ($resultado->num_rows > 0) {
         echo "<tr>
                 <td>" . $row['nome'] . "</td>
                 <td>" . $row['idade'] . "</td>
+                <td>" . $row['contato'] . "</td>
                 <td>" . $row['cidade'] . "</td>
                 <td>" . $row['estilo_vida'] . "</td>
                 <td>" . $row['espaco'] . "</td>
                 <td>" . $row['alergias'] . "</td>
                 <td>" . $row['custos'] . "</td>
                 <td>" . $row['experiencia'] . "</td>
-                <td>" . $row['tipo_animal'] . "</td>
+                <td>" . $row['motivo'] . "</td>
                 <td>" . $row['comportamento'] . "</td>
                 <td>" . $row['plano_cuidado'] . "</td>
                 <td>" . $row['compromisso'] . "</td>
