@@ -72,7 +72,7 @@ if (isset($_GET['id'])) {
             <p><strong>Compromisso:</strong> <?php echo $adotante['compromisso']; ?></p>
         </div>
 
-        <a href="index.php" class="button">Voltar para a lista</a>
+        <a href="lista.php" class="button">Voltar para a lista</a>
     </div>
 
 </body>

@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php include("./components/head.html"); ?>
 
 <body>
@@ -24,86 +21,191 @@
 <?php include("./components/filtro.html"); ?>
 
 <div id="container">
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <!-- Exemplo de slide fixo -->
-            <div class="swiper-slide" data-index="0" data-category="macho">
-                <div class="slide-content">
-                    <h2 class="title">Cachorro</h2>
-                    <div class="caption">Porte grande</div>
-                    <img src="img/cachorro7.jpg" alt="Imagem de um cachorro">
-                </div>
-            </div>
+    <div class="pets-list">
+        <?php
+        include_once("./services/conexao.php");
 
-            <?php
-            include_once("./services/conexao.php");
+        $sql = "SELECT * FROM cachorros";
+        $result = mysqli_query($conn, $sql);
 
-            // Obtém os parâmetros via GET (caso existam)
-            $animal_type = isset($_GET['animal-type']) ? $_GET['animal-type'] : '';
-            $animal_sex = isset($_GET['animal-sex']) ? $_GET['animal-sex'] : '';
-            $animal_size = isset($_GET['animal-size']) ? $_GET['animal-size'] : '';
-
-            // Ajusta a consulta SQL com base nos parâmetros
-            $sql = "SELECT * FROM cachorros WHERE 1=1"; 
-
-            if ($animal_type && $animal_type != 'todos') {
-                $sql .= " AND tipo = '$animal_type'"; 
+        while ($row = mysqli_fetch_assoc($result)) {
+            if (is_array($row) && ($row["nome"] != "")) {
+                echo '<div class="pet-card">
+                        <div class="pet-image">
+                            <img src="uploads/' . $row['foto'] . '" alt="Imagem de ' . $row['nome'] . '" class="animal-img">
+                        </div>
+                        <div class="pet-details">
+                            <h3>' . $row['nome'] . '</h3>
+                            <p><strong>Sexo:</strong> ' . ucfirst($row['sexo']) . '</p>
+                            <button class="details-button" onclick="showDetails(\'' . addslashes($row['nome']) . '\', \'' . $row['idade'] . '\', \'' . $row['pelagem'] . '\', \'' . $row['porte'] . '\')">
+                                Detalhar
+                            </button>
+                            <a href="formulario.php?nome=' . urlencode($row['nome']) . '" class="interest-button">Tenho Interesse</a>
+                        </div>
+                    </div>';
             }
+        }
+        ?>        
+    </div>
+</div>
 
-            if ($animal_sex && $animal_sex != 'todos') {
-                $sql .= " AND sexo = '$animal_sex'"; 
-            }
-
-            if ($animal_size && $animal_size != 'todos') {
-                $sql .= " AND porte = '$animal_size'"; 
-            }
-            $result = mysqli_query($conn, $sql);
-
-            while ($row = mysqli_fetch_assoc($result)) {
-                if (is_array($row) && ($row["nome"] != "")) {
-                    echo '<div class="swiper-slide" data-index="' . $row['nome'] . '" data-category="cachorro">
-                            <div class="slide-content">
-                                <h2 class="title">' . $row['nome'] . '</h2>
-                                <div class="caption">' . $row['porte'] . '</div>
-                                <img src="uploads/' . $row['foto'] . '" width="100" height="100" alt="Imagem de um cachorro">
-                                <button onclick="tenhointeresse(\'' . $row['nome'] . '\')" class="interest-btn">Tenho interesse</button>
-                            </div>
-                          </div>';
-                }
-            }
-            ?>
-        </div>
-
-        <div class="swiper-pagination"></div>
-
-        <div class="button-container">
-            <div class="action-buttons">
-                <button id="discard-button">Próximo</button>
-            </div>
-        </div>
+<!-- Modal para mostrar mais detalhes -->
+<div id="detailsModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3 id="modalTitle"></h3>
+        <p id="modalInfo"></p>
     </div>
 </div>
 
 <script>
-    function tenhointeresse(nomeanimal) {
-        window.location.href = "formulario.php?nome=" + nomeanimal;
+function showDetails(petName, petIdade, petPelagem, petPorte) {
+    const modal = document.getElementById("detailsModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalInfo = document.getElementById("modalInfo");
+
+    modalTitle.textContent = petName;
+    modalInfo.innerHTML = `
+        <p><strong>Idade:</strong> ${petIdade} anos</p>
+        <p><strong>Pelagem:</strong> ${petPelagem}</p>
+        <p><strong>Porte:</strong> ${petPorte}</p>
+    `;
+
+    modal.style.display = "block";
+}
+
+// Fechar o modal
+document.querySelector(".close").addEventListener("click", () => {
+    document.getElementById("detailsModal").style.display = "none";
+});
+
+// Fechar o modal ao clicar fora
+window.onclick = function(event) {
+    if (event.target == document.getElementById("detailsModal")) {
+        document.getElementById("detailsModal").style.display = "none";
+    }
+};
+</script>
+
+<!-- Estilo CSS para as cards -->
+<style>
+    .pets-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        padding: 20px;
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const swiper = new Swiper('.swiper-container', {
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            loop: true,
-        });
+    .pet-card {
+        width: 300px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s;
+    }
 
-        const discardButton = document.getElementById("discard-button");
-        discardButton.addEventListener("click", () => {
-            swiper.slideNext();  
-        });
-    });
-</script>
+    .pet-card:hover {
+        transform: scale(1.05);
+    }
+
+    .pet-image img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-bottom: 2px solid #eee;
+    }
+
+    .pet-details {
+        padding: 15px;
+        text-align: center;
+    }
+
+    .pet-details h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .pet-details p {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 8px;
+    }
+
+    .details-button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: 15px;
+    }
+
+    .details-button:hover {
+        background-color: #45a049;
+    }
+
+    /* Estilo do modal */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding-top: 60px;
+    }
+
+    .modal-content {
+        background-color: #fff;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+        border-radius: 8px;
+    }
+
+    .close {
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 25px;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .interest-button {
+        background-color: #008000; /* Cor laranja */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: 15px;
+        display: inline-block;
+        text-align: center;
+        text-decoration: none; /* Remove o sublinhado do link */
+    }
+
+    .interest-button:hover {
+        background-color: #228B22; /* Cor laranja mais escura */
+    }
+</style>
 
 </body>
 </html>

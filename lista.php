@@ -139,7 +139,7 @@ $gatosResult = $conn->query($gatosQuery);
 
                         <!-- Botão de Excluir -->
                         <form method="POST" action="excluir_cachorro.php" style="display:inline;">
-                            <input type="hidden" name="pet_id" >
+                        <input type="hidden" name="pet_id" value="<?= $pet['id'] ?>">
                             <button type="submit" class="delete-btn" onclick="return confirm('Tem certeza que deseja excluir este pet?');">Excluir</button>
                         </form>
                     </li>
@@ -168,7 +168,7 @@ $gatosResult = $conn->query($gatosQuery);
 
                         <!-- Botão de Excluir -->
                         <form method="POST" action="excluir_gato.php" style="display:inline;">
-                            <input type="hidden" name="pet_id" >
+                        <input type="hidden" name="pet_id" value="<?= $pet['id'] ?>">
                             <button type="submit" class="delete-btn" onclick="return confirm('Tem certeza que deseja excluir este pet?');">Excluir</button>
                         </form>
                     </li>
@@ -179,7 +179,7 @@ $gatosResult = $conn->query($gatosQuery);
         </ul>
 
         <!-- Botão de Logout -->
-        <a href="logout.php" class="logout-link">Sair</a>
+       
     </div>
 
 </body>
