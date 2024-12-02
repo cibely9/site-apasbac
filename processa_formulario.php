@@ -27,7 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->execute()) {
         echo "Formulário enviado com sucesso!";
-        header("Location: respostas.php"); // Redirecionar para a página de respostas
+        header("Location: perfil_avalicao.php");
+        exit;
+        
         exit;
     } else {
         echo "Erro ao enviar o formulário: " . $stmt->error;
@@ -35,5 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $stmt->close();
     $conn->close();
+    
 }
 ?>

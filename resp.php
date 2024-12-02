@@ -40,10 +40,89 @@ $resultCats = mysqli_query($conn, $sqlCats);
 </nav>
 
 </body>
+<!-- Modal -->
+<div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+</div>
 
+
+
+<script>
+    // Abrir o modal quando a imagem for clicada
+function openModal(imgSrc) {
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById("img01");
+    modal.style.display = "flex"; // Exibe o modal
+    modalImg.src = imgSrc;
+}
+
+// Fechar o modal
+function closeModal() {
+    var modal = document.getElementById('myModal');
+    modal.style.display = "none"; // Esconde o modal
+}
+
+// Adicionar evento de clique nas imagens
+var images = document.querySelectorAll('.card img');
+images.forEach(function(image) {
+    image.addEventListener('click', function() {
+        openModal(image.src);
+    });
+});
+
+// Evento de fechar o modal quando clicar no botão de fechar
+var closeBtn = document.querySelector('.close');
+closeBtn.addEventListener('click', closeModal);
+
+// Fechar o modal quando clicar fora da imagem (na área escura)
+var modal = document.getElementById('myModal');
+modal.addEventListener('click', function(event) {
+    // Verifica se o clique foi fora do conteúdo do modal (se não foi no .modal-content)
+    if (event.target === modal) {
+        closeModal();
+    }
+});
+
+</script>
 
 
     <style>
+/* Modal */
+.modal {
+    display: none; /* Oculto por padrão */
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro */
+    display: flex; /* Usando flexbox para centralizar */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+/* Conteúdo do modal */
+.modal-content {
+    max-width: 90%; /* Ajusta a imagem para ter no máximo 90% da largura da tela */
+    max-height: 90%; /* Ajusta a imagem para ter no máximo 90% da altura da tela */
+    object-fit: contain; /* Mantém a proporção da imagem */
+    border-radius: 8px; /* Bordas arredondadas */
+}
+
+/* Fechar botão */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
        body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -94,9 +173,11 @@ section h2 {
 
 .card img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: 250px; /* Aumenta a altura para preencher mais espaço */
+    object-fit: contain; /* Exibe a imagem inteira */
+    background-color: #f0f0f0; /* Adiciona um fundo cinza claro para contraste */
 }
+
 
 .card-content {
     padding: 15px;
@@ -241,7 +322,12 @@ section h2 {
             <div class="card-container">
                 <?php while ($dog = mysqli_fetch_assoc($resultDogs)) : ?>
                     <div class="card">
-                        <img src="uploads/<?php echo htmlspecialchars($dog['foto']); ?>" alt="Imagem de <?php echo htmlspecialchars($dog['nome']); ?>">
+                    <img 
+                     src="uploads/<?php echo htmlspecialchars($dog['foto']); ?>" 
+                     alt="Imagem de <?php echo htmlspecialchars($dog['nome']); ?>" 
+                     onclick="openModal(this.src)" 
+                     style="cursor: pointer;">
+
                         <div class="card-content">
                             <h3><?php echo htmlspecialchars($dog['nome']); ?></h3>
                             <p><strong>Idade:</strong> <?php echo htmlspecialchars($dog['idade']); ?></p>
@@ -281,5 +367,6 @@ section h2 {
             </div>
         </section>
     </main>
+    
 </body>
 </html>
